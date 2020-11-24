@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,7 +20,10 @@ public class Playlist {
 
     private String description;
 
-    private Long songQuantity;
+    @ManyToMany()
+    @JoinTable(name = "playlist_song",joinColumns = @JoinColumn(name = "playlist_id"),
+            inverseJoinColumns = @JoinColumn(name = "song_id"))
+    private List<Song> songQuantity;
 
     private Timestamp dateCreated;
 
@@ -28,4 +33,14 @@ public class Playlist {
     private Timestamp dateUpdated;
 
     private Long view;
+
+
+    public Integer getSongQuantity() {
+        List<Song> songQuantity = new ArrayList<>();
+        return songQuantity.size();
+    }
+
+    public void setSongQuantity(List<Song> songQuantity) {
+        this.songQuantity = songQuantity;
+    }
 }
