@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/playlists")
+@CrossOrigin("*")
 public class PlaylistController {
 
     @Autowired
