@@ -34,13 +34,4 @@ public class Playlist {
 
     private Long view;
 
-
-    public Integer getSongQuantity() {
-        List<Song> songQuantity = new ArrayList<>();
-        return songQuantity.size();
-    }
-
-    public void setSongQuantity(List<Song> songQuantity) {
-        this.songQuantity = songQuantity;
-    }
 }
