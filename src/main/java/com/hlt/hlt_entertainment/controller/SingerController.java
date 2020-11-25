@@ -9,20 +9,21 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
 
 @Controller
 @RequestMapping("/singer/")
+@CrossOrigin("*")
 public class SingerController {
     @Autowired
     private SingerService singerService;
     @Autowired
     private SongService songService;
 
-    @RequestMapping(value = "/list/", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
 public ResponseEntity<Page<Singer>> showListSingers(Pageable pageable){
 Page<Singer> singerPage = singerService.findAll(pageable);
 if(singerPage == null){
