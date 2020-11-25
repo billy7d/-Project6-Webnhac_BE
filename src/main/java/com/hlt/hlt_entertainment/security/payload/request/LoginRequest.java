@@ -1,4 +1,4 @@
-package com.hlt.hlt_entertainment.security.payload;
+package com.hlt.hlt_entertainment.security.payload.request;
 
 import javax.validation.constraints.NotBlank;
 

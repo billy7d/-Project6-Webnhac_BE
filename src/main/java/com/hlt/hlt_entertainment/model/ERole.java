@@ -1,4 +1,6 @@
 package com.hlt.hlt_entertainment.model;
 
-public class ERole {
+public enum ERole {
+    ROLE_USER,
+    ROLE_ADMIN
 }
