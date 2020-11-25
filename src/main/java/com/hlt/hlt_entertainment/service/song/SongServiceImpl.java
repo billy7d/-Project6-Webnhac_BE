@@ -23,7 +23,7 @@ private SongRepository songRepository;
     }
 
     @Override
-    public Song Save(Song song) {
+    public Song save(Song song) {
         return songRepository.save(song);
     }
 

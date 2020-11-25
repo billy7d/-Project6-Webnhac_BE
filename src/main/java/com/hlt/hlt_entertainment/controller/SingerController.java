@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-@RequestMapping("/singer/")
+@RequestMapping("/singers/")
 @CrossOrigin("*")
 public class SingerController {
     @Autowired

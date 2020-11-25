@@ -19,15 +19,19 @@ public class Song {
 
     private String description;
 
-    @Transient
-    @NotBlank(message = "Please attach file")
-    private MultipartFile fileMp3;
-    private String linkMp3;
+//    @Transient
+////    @NotBlank(message = "Please attach file")
+//    private MultipartFile fileMp3;
+//    private String linkMp3;
+    
+    private String mp3Url;
 
-    @Transient
-    @NotBlank(message = "Please attach file.")
-    private MultipartFile avatar;
-    private String image;
+//    @Transient
+////    @NotBlank(message = "Please attach file.")
+//    private MultipartFile avatar;
+//    private String image;
+    
+    private String imgUrl;
 
     @NotBlank(message = "Please enter author name!")
     private String author;
