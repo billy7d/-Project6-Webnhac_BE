@@ -10,6 +10,9 @@ import java.util.List;
 @Data
 @Entity
 public class Playlist {
+    public  Playlist(){
+        songQuantity  = new ArrayList<>();
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,7 +26,7 @@ public class Playlist {
     @ManyToMany()
     @JoinTable(name = "playlist_song",joinColumns = @JoinColumn(name = "playlist_id"),
             inverseJoinColumns = @JoinColumn(name = "song_id"))
-    private List<Song> songQuantity;
+    public List<Song> songQuantity;
 
     private Timestamp dateCreated;
 
@@ -39,6 +42,8 @@ public class Playlist {
         List<Song> songQuantity = new ArrayList<>();
         return songQuantity.size();
     }
+
+
 
     public void setSongQuantity(List<Song> songQuantity) {
         this.songQuantity = songQuantity;

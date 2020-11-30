@@ -38,5 +38,8 @@ public class Song {
 
     private String album;
 
+    private Long view;
+
+
 
 }

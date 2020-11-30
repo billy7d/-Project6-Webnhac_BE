@@ -31,6 +31,7 @@ public class SingerController {
             Song song  = songRepository.findById(id).get();
             singer.songList.add(song);
         }
+
         singerRepository.save(singer);
         return new ResponseEntity<>(singer,HttpStatus.OK);
     }
