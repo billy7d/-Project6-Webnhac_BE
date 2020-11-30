@@ -4,12 +4,14 @@ import com.hlt.hlt_entertainment.model.Song;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-public interface SongService {
-    Page<Song> findAll(Pageable pageable);
+import java.util.Optional;
 
-    Song findBySongId(Long id);
+public interface SongService {
+    Iterable<Song> findAll();
 
     Song save(Song song);
 
-    void delete(Long id);
+    Optional<Song> findById(Long id);
+
+    void deleteById(Long id);
 }
