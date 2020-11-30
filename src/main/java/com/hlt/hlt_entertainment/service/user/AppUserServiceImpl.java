@@ -3,7 +3,9 @@ package com.hlt.hlt_entertainment.service.user;
 import com.hlt.hlt_entertainment.model.AppUser;
 import com.hlt.hlt_entertainment.repo.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AppUserServiceImpl implements AppUserService {
     @Autowired
     private AppUserRepository appUserRepository;

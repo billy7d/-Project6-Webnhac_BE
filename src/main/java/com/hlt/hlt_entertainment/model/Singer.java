@@ -26,7 +26,7 @@ public class Singer {
     private String band;
 
 
-    @ManyToMany(mappedBy = "singerName")
+    @ManyToMany(mappedBy = "singerList")
     private List<Song> songList;
 
     private Long view;
