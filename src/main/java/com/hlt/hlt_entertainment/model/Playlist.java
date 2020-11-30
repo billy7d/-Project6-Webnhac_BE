@@ -3,8 +3,12 @@ package com.hlt.hlt_entertainment.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -14,10 +18,13 @@ public class Playlist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     private String name;
 
+    @NotEmpty
     private String musicType;
 
+    @NotEmpty
     private String description;
 
     @ManyToMany()
@@ -25,7 +32,8 @@ public class Playlist {
             inverseJoinColumns = @JoinColumn(name = "song_id"))
     private List<Song> songQuantity;
 
-    private Timestamp dateCreated;
+    private String dateCreated;
+
 
     @ManyToOne
     private AppUser creator;
@@ -34,13 +42,16 @@ public class Playlist {
 
     private Long view;
 
-
-    public Integer getSongQuantity() {
-        List<Song> songQuantity = new ArrayList<>();
-        return songQuantity.size();
+    public String getDateCreated() {
+        return dateCreated;
     }
 
-    public void setSongQuantity(List<Song> songQuantity) {
-        this.songQuantity = songQuantity;
+    public void setDateCreated(String dateCreated) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
+        String dateCreated1 = formatter.format(new Date());
+        this.dateCreated = dateCreated1;
     }
 }
+
+
+
