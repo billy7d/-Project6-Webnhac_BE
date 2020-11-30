@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class SingerServiceImpl implements SingerService {
+public class SingerServiceImpl implements com.hlt.hlt_entertainment.service.singer.SingerService {
 
     @Autowired
     SingerRepository singerRepository;

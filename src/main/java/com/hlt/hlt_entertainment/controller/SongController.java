@@ -40,27 +40,52 @@ public class SongController {
     }
 
 
-
     @PostMapping("/uploadmp3")
-    public ResponseEntity<Song> uploadSong(@RequestParam("imageFile") MultipartFile multipartFile, Song song){
-            Song newSong = new Song();
+
+    public ResponseEntity<Song> uploadSong(@RequestParam("songFile") MultipartFile multipartFile, Song song){
+
         Cloudinary cloudinary = new Cloudinary(CLOUDINARY_URL);
 
-        try{
+        try {
             File mp3File = File.createTempFile("test", multipartFile.getOriginalFilename()).toPath().toFile();
             multipartFile.transferTo(mp3File);
 
-            Map responseMp3 = cloudinary.uploader().upload(mp3File,  ObjectUtils.asMap("resource_type", "auto"));
+            Map responseMp3 = cloudinary.uploader().upload(mp3File, ObjectUtils.asMap("resource_type", "auto"));
             JSONObject jsonObject = new JSONObject(responseMp3);
             String urlMp3 = jsonObject.getString("url");
 
             song.setLinkMp3(urlMp3);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            e.getMessage();
+        }
+//        songService.save(newSong);
+
+        return new ResponseEntity<Song>(song, HttpStatus.OK);
+    }
+
+    @PostMapping("/uploadava")
+    public ResponseEntity<Song> uploadSongAva(@RequestParam("imgFile") MultipartFile multipartFile, Song song){
+
+        Cloudinary cloudinary = new Cloudinary(CLOUDINARY_URL);
+
+        try{
+            File imgFile = File.createTempFile("test", multipartFile.getOriginalFilename()).toPath().toFile();
+            multipartFile.transferTo(imgFile);
+
+            Map responseImg = cloudinary.uploader().upload(imgFile,  ObjectUtils.asMap("resource_type", "auto"));
+            JSONObject jsonObject = new JSONObject(responseImg);
+            String urlImg = jsonObject.getString("url");
+
+            song.setLinkImg(urlImg);
 
         } catch ( IOException e) {
             e.printStackTrace();
             e.getMessage();
         }
 //        songService.save(newSong);
+
         return new ResponseEntity<Song>(song, HttpStatus.OK);
     }
 
