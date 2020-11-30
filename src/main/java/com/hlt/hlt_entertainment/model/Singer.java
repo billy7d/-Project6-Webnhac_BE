@@ -1,5 +1,6 @@
 package com.hlt.hlt_entertainment.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class Singer {
 
 
     @ManyToMany(mappedBy = "singerList")
+    @JsonIgnore
     private List<Song> songList;
 
     private Long view;
