@@ -26,15 +26,15 @@ public class Song {
     private String description;
 
     @Transient
-    @NotBlank(message = "Please attach file")
     private MultipartFile fileMp3;
+
     private String linkMp3;
     
 
 
     @Transient
-    @NotBlank(message = "Please attach file")
     private MultipartFile fileAvatar;
+
     private String linkImg;
     
 
