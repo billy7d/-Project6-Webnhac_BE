@@ -49,17 +49,15 @@ public class Playlist {
         return dateCreated;
     }
 
-<<<<<<< HEAD
     public void setDateCreated(String dateCreated) {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
         String dateCreated1 = formatter.format(new Date());
         this.dateCreated = dateCreated1;
-=======
+    }
 
 
     public void setSongQuantity(List<Song> songQuantity) {
         this.songQuantity = songQuantity;
->>>>>>> add-singer
     }
 }
 

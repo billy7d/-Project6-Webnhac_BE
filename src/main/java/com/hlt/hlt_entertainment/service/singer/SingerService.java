@@ -4,7 +4,7 @@ import com.hlt.hlt_entertainment.model.Singer;
 
 import java.util.Optional;
 
-public interface SingerService {
+public interface   SingerService {
     Iterable<Singer> findAll();
 
     Singer save(Singer singer);

@@ -21,12 +21,9 @@ public class Singer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-<<<<<<< HEAD
-    private String name;
-=======
     @NotNull
     private String Name;
->>>>>>> add-singer
+
 
     @NotNull
     private String gender;
@@ -45,13 +42,9 @@ public class Singer {
     private String band;
 
 
-<<<<<<< HEAD
     @ManyToMany(mappedBy = "singerList")
-    private List<Song> songList;
-=======
-    @ManyToMany(mappedBy = "singerName")
     public List<Song> songList;
->>>>>>> add-singer
+
 
     private Long view;
 
