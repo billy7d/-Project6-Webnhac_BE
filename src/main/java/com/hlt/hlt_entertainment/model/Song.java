@@ -51,7 +51,7 @@ public class Song {
     @ManyToMany
       @JoinTable(name = "singer_song",   joinColumns = @JoinColumn(name = "song_id"),
             inverseJoinColumns = @JoinColumn(name = "singer_id"))
-    private List<Singer> singerList;
+    public List<Singer> singerList;
 
     @Transient
     @ElementCollection
@@ -60,5 +60,8 @@ public class Song {
     public Song(){
         singerList = new ArrayList<>();
     }
+    private Long view;
+
+
 
 }

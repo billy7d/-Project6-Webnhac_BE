@@ -14,6 +14,9 @@ import java.util.List;
 @Data
 @Entity
 public class Playlist {
+    public  Playlist(){
+        songQuantity  = new ArrayList<>();
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,7 +33,7 @@ public class Playlist {
     @ManyToMany()
     @JoinTable(name = "playlist_song", joinColumns = @JoinColumn(name = "playlist_id"),
             inverseJoinColumns = @JoinColumn(name = "song_id"))
-    private List<Song> songQuantity;
+    public List<Song> songQuantity;
 
     private String dateCreated;
 
@@ -50,6 +53,11 @@ public class Playlist {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy 'at' HH:mm:ss");
         String dateCreated1 = formatter.format(new Date());
         this.dateCreated = dateCreated1;
+    }
+
+
+    public void setSongQuantity(List<Song> songQuantity) {
+        this.songQuantity = songQuantity;
     }
 }
 
