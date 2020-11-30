@@ -1,4 +1,4 @@
-package com.hlt.hlt_entertainment.service.singer;
+package com.hlt.hlt_entertainment.service.Singer;
 
 import com.hlt.hlt_entertainment.model.Singer;
 
