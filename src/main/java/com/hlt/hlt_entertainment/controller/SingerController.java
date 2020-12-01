@@ -29,7 +29,7 @@ public class SingerController {
     SongRepository songRepository;
 
     @PostMapping("/create")
-    public ResponseEntity<Singer> createNewStudent(@Valid @RequestBody Singer singer, BindingResult bindingResult){
+    public ResponseEntity<Singer> createNewSinger(@Valid @RequestBody Singer singer, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -41,4 +41,6 @@ public class SingerController {
         singerRepository.save(singer);
         return new ResponseEntity<>(singer,HttpStatus.OK);
     }
+
+
 }

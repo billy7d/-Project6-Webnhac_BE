@@ -8,7 +8,8 @@ import com.cloudinary.utils.ObjectUtils;
 import com.hlt.hlt_entertainment.model.Singer;
 import com.hlt.hlt_entertainment.model.Song;
 import com.hlt.hlt_entertainment.repo.SongRepository;
-import com.hlt.hlt_entertainment.service.singer.SingerService;
+
+import com.hlt.hlt_entertainment.service.Singer.SingerService;
 import com.hlt.hlt_entertainment.service.song.SongService;
 import org.cloudinary.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,7 +121,7 @@ public class SongController {
         return new ResponseEntity<>(listNewSong, HttpStatus.OK);
     }
     @GetMapping("/{id}")
-    public ResponseEntity<Song> getOneStudent(@PathVariable Long id){
+    public ResponseEntity<Song> getOneSong(@PathVariable Long id){
         Optional<Song> optionalStudent = songRepository.findById(id);
         if(optionalStudent.isPresent()) return new ResponseEntity<>(optionalStudent.get(),HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
