@@ -42,5 +42,9 @@ public class SingerController {
         return new ResponseEntity<>(singer,HttpStatus.OK);
     }
 
+    @GetMapping("")
+    public ResponseEntity<Iterable<Singer>> getAllSinger(){
+        return new ResponseEntity<Iterable<Singer>>(singerRepository.findAll(),HttpStatus.OK);
+    }
 
 }
