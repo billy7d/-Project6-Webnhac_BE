@@ -1,6 +1,7 @@
 package com.hlt.hlt_entertainment.controller;
 
 import com.hlt.hlt_entertainment.model.AppUser;
+import com.hlt.hlt_entertainment.model.Playlist;
 import com.hlt.hlt_entertainment.model.Song;
 import com.hlt.hlt_entertainment.service.playlist.PlaylistService;
 import com.hlt.hlt_entertainment.service.song.SongService;
@@ -28,9 +29,16 @@ public class UserController {
     private PlaylistService playlistService;
 
     @GetMapping("/song/{id}")
-    public ResponseEntity<Iterable<Song>> getAllSongOfUser(@PathVariable("id") Long id){
+    public ResponseEntity<Iterable<Song>> getAllSongOfCreator(@PathVariable("id") Long id){
         AppUser creator = appUserService.findById(id);
         Iterable<Song> songIterable = songService.findByCreator(creator);
         return new  ResponseEntity<>(songIterable, HttpStatus.OK);
+    }
+
+    @GetMapping("/playlist/{id}")
+    public ResponseEntity<Iterable<Playlist>> getAllPlaylistOfCreator(@PathVariable("id") Long id){
+        AppUser creator = appUserService.findById(id);
+        Iterable<Playlist> playlistIterable = playlistService.findByCreator(creator);
+        return new ResponseEntity<>(playlistIterable, HttpStatus.OK);
     }
 }

@@ -1,5 +1,6 @@
 package com.hlt.hlt_entertainment.service.playlist;
 
+import com.hlt.hlt_entertainment.model.AppUser;
 import com.hlt.hlt_entertainment.model.Playlist;
 import com.hlt.hlt_entertainment.repo.PlaylistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,11 @@ public class PlaylistServiceImpl implements PlaylistService{
     @Override
     public Iterable<Playlist> findAll() {
         return playlistRepository.findAll();
+    }
+
+    @Override
+    public Iterable<Playlist> findByCreator(AppUser creator) {
+        return playlistRepository.findAllByCreator(creator);
     }
 
     @Override
