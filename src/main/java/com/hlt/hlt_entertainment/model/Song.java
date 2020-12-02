@@ -1,5 +1,6 @@
 package com.hlt.hlt_entertainment.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -62,6 +63,9 @@ public class Song {
     }
     private Long view;
 
+    @ManyToMany(mappedBy = "songQuantity")
+    @JsonIgnore
+    private List<Playlist> playlists;
 
 
 }

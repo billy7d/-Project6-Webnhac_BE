@@ -44,7 +44,6 @@ public class Singer {
 
 
     @ManyToMany(mappedBy = "singerList")
-
     @JsonIgnore
     public List<Song> songList;
 

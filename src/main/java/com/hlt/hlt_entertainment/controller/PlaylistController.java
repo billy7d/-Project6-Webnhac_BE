@@ -2,6 +2,7 @@ package com.hlt.hlt_entertainment.controller;
 
 import com.hlt.hlt_entertainment.model.Playlist;
 
+import com.hlt.hlt_entertainment.model.Singer;
 import com.hlt.hlt_entertainment.service.playlist.PlaylistService;
 
 import com.hlt.hlt_entertainment.model.Song;
@@ -39,17 +40,22 @@ public class PlaylistController {
 
     @PostMapping("/create")
     public ResponseEntity<Playlist> createCustomer(@RequestBody Playlist playlist) {
+        playlist.setDateCreated();
         playlistService.save(playlist);
         return new ResponseEntity<Playlist>(playlist, HttpStatus.OK);
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<Playlist> updatePlaylist(@PathVariable("id") Long id, Playlist playlist) {
+    public ResponseEntity<Playlist> updatePlaylist(@PathVariable("id") Long id, @RequestBody Playlist playlist) {
         Playlist currentPlaylist = playlistService.findById(id).get();
         currentPlaylist.setName(playlist.getName());
-        currentPlaylist.setMusicType(playlist.getMusicType());
+        currentPlaylist.setCreator(playlist.getCreator());
         currentPlaylist.setDescription(playlist.getDescription());
+        currentPlaylist.setDateCreated();
+        currentPlaylist.setMusicType(playlist.getMusicType());
+        currentPlaylist.setSongQuantity(playlist.getSongQuantity());
 
+        playlistService.save(currentPlaylist);
         return new ResponseEntity<Playlist>(currentPlaylist, HttpStatus.OK);
     }
 
@@ -73,4 +79,6 @@ public class PlaylistController {
         }
         return new ResponseEntity<>(listNewPlaylist,HttpStatus.OK);
     }
+
+
 }

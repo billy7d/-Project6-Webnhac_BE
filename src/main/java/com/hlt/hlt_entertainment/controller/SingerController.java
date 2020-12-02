@@ -29,22 +29,24 @@ public class SingerController {
     SongRepository songRepository;
 
     @PostMapping("/create")
-    public ResponseEntity<Singer> createNewSinger(@Valid @RequestBody Singer singer, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
+    public ResponseEntity<Singer> createNewSinger(@Valid @RequestBody Singer singer, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        for (Long id: singer.getTuan()) {
-            Song song  = songRepository.findById(id).get();
+        for (Long id : singer.getTuan()) {
+            Song song = songRepository.findById(id).get();
             singer.songList.add(song);
         }
 
         singerRepository.save(singer);
-        return new ResponseEntity<>(singer,HttpStatus.OK);
+        return new ResponseEntity<>(singer, HttpStatus.OK);
     }
 
     @GetMapping("")
-    public ResponseEntity<Iterable<Singer>> getAllSinger(){
-        return new ResponseEntity<Iterable<Singer>>(singerRepository.findAll(),HttpStatus.OK);
+    public ResponseEntity<Iterable<Singer>> getAllSinger() {
+        return new ResponseEntity<Iterable<Singer>>(singerRepository.findAll(), HttpStatus.OK);
     }
+
+
 
 }
