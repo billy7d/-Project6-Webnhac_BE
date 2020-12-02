@@ -22,12 +22,12 @@ public class AppUser {
     @NotBlank
     private String password;
 
-private String rePassword;
+    private String rePassword;
 
-private String phoneNumber;
+    private String phoneNumber;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(	name = "user_roles",
+    @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<AppRole> roles = new HashSet<>();

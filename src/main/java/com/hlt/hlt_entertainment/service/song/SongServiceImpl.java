@@ -1,5 +1,6 @@
 package com.hlt.hlt_entertainment.service.song;
 
+import com.hlt.hlt_entertainment.model.AppUser;
 import com.hlt.hlt_entertainment.model.Song;
 import com.hlt.hlt_entertainment.repo.SongRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,11 @@ public class SongServiceImpl implements SongService{
     @Override
     public Iterable<Song> findAll() {
         return songRepository.findAll();
+    }
+
+    @Override
+    public Iterable<Song> findByCreator(AppUser creator) {
+        return songRepository.findByCreator(creator);
     }
 
     @Override
