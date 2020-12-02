@@ -33,14 +33,13 @@ public class Song {
     @Transient
     private MultipartFile fileAvatar;
     private String linkImg;
-    
-
 
     @NotBlank(message = "Please enter author name!")
     private String author;
-
+    ;
+    @ManyToOne
     @NotBlank
-    private String creator;
+    private AppUser creator;
 
     @NotBlank
     private String musicType;
@@ -49,7 +48,7 @@ public class Song {
     private String album;
 
     @ManyToMany
-      @JoinTable(name = "singer_song",   joinColumns = @JoinColumn(name = "song_id"),
+    @JoinTable(name = "singer_song", joinColumns = @JoinColumn(name = "song_id"),
             inverseJoinColumns = @JoinColumn(name = "singer_id"))
     public List<Singer> singerList;
 
@@ -57,11 +56,10 @@ public class Song {
     @ElementCollection
     private List<Long> singerValues;
 
-    public Song(){
+    public Song() {
         singerList = new ArrayList<>();
     }
+
     private Long view;
-
-
 
 }
