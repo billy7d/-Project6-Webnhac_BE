@@ -46,14 +46,12 @@ public class Playlist {
     private Long view;
 
     public String getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd '' HH:mm:ss");
         String dateCreated1 = formatter.format(new Date());
         this.dateCreated = dateCreated1;
+        return dateCreated;
     }
+
 
     public List<Song> getSongQuantity() {
         return songQuantity;

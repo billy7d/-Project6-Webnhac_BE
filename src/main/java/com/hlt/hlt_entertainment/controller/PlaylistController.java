@@ -40,7 +40,7 @@ public class PlaylistController {
 
     @PostMapping("/create")
     public ResponseEntity<Playlist> createCustomer(@RequestBody Playlist playlist) {
-        playlist.setDateCreated();
+        playlist.getDateCreated();
         playlistService.save(playlist);
         return new ResponseEntity<Playlist>(playlist, HttpStatus.OK);
     }
@@ -51,7 +51,7 @@ public class PlaylistController {
         currentPlaylist.setName(playlist.getName());
         currentPlaylist.setCreator(playlist.getCreator());
         currentPlaylist.setDescription(playlist.getDescription());
-        currentPlaylist.setDateCreated();
+        currentPlaylist.getDateCreated();
         currentPlaylist.setMusicType(playlist.getMusicType());
         currentPlaylist.setSongQuantity(playlist.getSongQuantity());
 
