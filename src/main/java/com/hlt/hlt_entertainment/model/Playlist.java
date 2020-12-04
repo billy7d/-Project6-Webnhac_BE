@@ -1,6 +1,7 @@
 package com.hlt.hlt_entertainment.model;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -62,6 +63,9 @@ public class Playlist {
     public void setSongQuantity(List<Song> songQuantity) {
         this.songQuantity = songQuantity;
     }
+    @Transient
+    private MultipartFile fileAvatar;
+    private String linkImg;
 }
 
 

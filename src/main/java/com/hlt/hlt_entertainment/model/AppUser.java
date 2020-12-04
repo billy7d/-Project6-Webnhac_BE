@@ -16,7 +16,7 @@ public class AppUser {
     private Long id;
 
     @NotBlank
-//    @Column(name = "username")
+    @Column(name = "username")
     private String userName;
 
     @NotBlank

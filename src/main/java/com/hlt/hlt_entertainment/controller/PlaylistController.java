@@ -1,32 +1,58 @@
 package com.hlt.hlt_entertainment.controller;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.hlt.hlt_entertainment.model.Playlist;
 
-import com.hlt.hlt_entertainment.model.Singer;
 import com.hlt.hlt_entertainment.service.playlist.PlaylistService;
 
-import com.hlt.hlt_entertainment.model.Song;
 import com.hlt.hlt_entertainment.repo.PlaylistRepository;
-import com.hlt.hlt_entertainment.repo.SongRepository;
 
+import org.cloudinary.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/playlists")
 @CrossOrigin("*")
 public class PlaylistController {
-
+    final String CLOUDINARY_URL = "cloudinary://292468957674773:lcLLj26C4VX82SHtbJrjZkcwhas@dos9lacv4";
     @Autowired
     PlaylistService playlistService;
     @Autowired
     PlaylistRepository playlistRepository;
+    @PostMapping("/uploadava")
+    public ResponseEntity<Playlist> uploadSongAva(@RequestParam("imgFile") MultipartFile multipartFile, Playlist playlist){
 
+        Cloudinary cloudinary = new Cloudinary(CLOUDINARY_URL);
+
+        try{
+            File imgFile = File.createTempFile("test", multipartFile.getOriginalFilename()).toPath().toFile();
+            multipartFile.transferTo(imgFile);
+
+            Map responseImg = cloudinary.uploader().upload(imgFile,  ObjectUtils.asMap("resource_type", "auto"));
+            JSONObject jsonObject = new JSONObject(responseImg);
+            String urlImg = jsonObject.getString("url");
+
+            playlist.setLinkImg(urlImg);
+
+        } catch ( IOException e) {
+            e.printStackTrace();
+            e.getMessage();
+        }
+//        songService.save(newSong);
+
+        return new ResponseEntity<>(playlist, HttpStatus.OK);
+    }
     @GetMapping("")
     public ResponseEntity<Iterable<Playlist>> getAllPlaylists() {
         return new ResponseEntity<Iterable<Playlist>>(playlistService.findAll(), HttpStatus.OK);
