@@ -10,6 +10,7 @@ import java.util.Set;
 
 
 @Entity
+@Data
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

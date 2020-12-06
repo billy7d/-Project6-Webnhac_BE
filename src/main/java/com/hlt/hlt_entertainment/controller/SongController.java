@@ -5,12 +5,15 @@ package com.hlt.hlt_entertainment.controller;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 
+import com.hlt.hlt_entertainment.model.AppUser;
 import com.hlt.hlt_entertainment.model.Singer;
 import com.hlt.hlt_entertainment.model.Song;
 import com.hlt.hlt_entertainment.repo.SongRepository;
 
+import com.hlt.hlt_entertainment.security.payload.response.JwtResponse;
 import com.hlt.hlt_entertainment.service.Singer.SingerService;
 import com.hlt.hlt_entertainment.service.song.SongService;
+import com.hlt.hlt_entertainment.service.user.AppUserService;
 import org.cloudinary.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +44,7 @@ public class SongController {
     private SingerService singerService;
     @Autowired
     private SongRepository songRepository;
+
 
 
     @GetMapping("")
@@ -99,10 +104,12 @@ public class SongController {
 
     @PostMapping("/create")
     public ResponseEntity<Song> createSong(@RequestBody Song song) {
+
         for (Long id : song.getSingerValues()) {
             Singer singer = singerService.findSingerById(id).get();
             song.getSingerList().add(singer);
         }
+
         songService.save(song);
         return new ResponseEntity<Song>(song, HttpStatus.OK);
     }

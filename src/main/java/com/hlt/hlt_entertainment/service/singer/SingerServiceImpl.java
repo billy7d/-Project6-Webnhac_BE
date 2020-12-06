@@ -1,4 +1,4 @@
-package com.hlt.hlt_entertainment.service.Singer;
+package com.hlt.hlt_entertainment.service.singer;
 
 import com.hlt.hlt_entertainment.model.Singer;
 import com.hlt.hlt_entertainment.repo.SingerRepository;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class SingerServiceImpl implements SingerService {
+public class SingerServiceImpl implements com.hlt.hlt_entertainment.service.Singer.SingerService {
 
     @Autowired
     SingerRepository singerRepository;

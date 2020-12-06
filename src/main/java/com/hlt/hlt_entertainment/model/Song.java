@@ -39,7 +39,6 @@ public class Song {
     private String author;
     ;
     @ManyToOne
-    @NotBlank
     private AppUser creator;
 
     @NotBlank
@@ -68,4 +67,11 @@ public class Song {
     private List<Playlist> playlists;
 
 
+    public AppUser getCreator() {
+        return creator;
+    }
+
+    public void setCreator(AppUser creator) {
+        this.creator = creator;
+    }
 }
