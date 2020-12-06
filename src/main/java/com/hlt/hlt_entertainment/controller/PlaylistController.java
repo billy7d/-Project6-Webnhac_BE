@@ -98,7 +98,7 @@ public class PlaylistController {
         int index = 1;
         List<Playlist> listNewPlaylist = new ArrayList<>();
         for (int i = list.size(); i > 0 ; i--) {
-            if(index<10){
+            if(index<7){
                 listNewPlaylist.add(list.get(i-1));
                 index++;
             }
