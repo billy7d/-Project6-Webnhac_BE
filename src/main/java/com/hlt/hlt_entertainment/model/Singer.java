@@ -3,6 +3,7 @@ package com.hlt.hlt_entertainment.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +25,7 @@ public class Singer {
     private Long id;
 
     @NotNull
-    private String Name;
+    private String name;
 
 
     @NotNull
@@ -44,8 +45,12 @@ public class Singer {
     private String band;
 
 
-    @ManyToMany(mappedBy = "singerList")
-    @JsonIgnore
+
+
+    @ManyToMany
+    @JoinTable(name = "singer_song", joinColumns = @JoinColumn(name = "singer_id"),
+            inverseJoinColumns = @JoinColumn(name = "song_id"))
+
     public List<Song> songList;
 
 
@@ -56,6 +61,7 @@ public class Singer {
     private List<Long> tuan;
 
     private String valuesSong;
+
     @Transient
     private MultipartFile fileAvatar;
     private String linkImg;

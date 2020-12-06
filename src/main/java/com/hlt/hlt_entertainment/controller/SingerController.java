@@ -2,6 +2,7 @@ package com.hlt.hlt_entertainment.controller;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.hlt.hlt_entertainment.model.Playlist;
 import com.hlt.hlt_entertainment.model.Singer;
 
 import com.hlt.hlt_entertainment.repo.SingerRepository;
@@ -23,9 +24,11 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/singers")
 public class SingerController {
@@ -76,6 +79,18 @@ public class SingerController {
         return new ResponseEntity<Iterable<Singer>>(singerRepository.findAll(), HttpStatus.OK);
     }
 
-
+    @GetMapping("/newSinger")
+    public ResponseEntity<Iterable<Singer>> getListNewSing(){
+        List<Singer> list = singerRepository.findAll();
+        int index = 1;
+        List<Singer> listNewSinger = new ArrayList<>();
+        for (int i = list.size(); i > 0 ; i--) {
+            if(index<7){
+                listNewSinger.add(list.get(i-1));
+                index++;
+            }
+        }
+        return new ResponseEntity<>(listNewSinger,HttpStatus.OK);
+    }
 
 }

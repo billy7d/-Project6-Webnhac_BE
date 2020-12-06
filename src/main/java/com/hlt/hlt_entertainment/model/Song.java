@@ -48,8 +48,8 @@ public class Song {
     private String album;
 
     @ManyToMany
-    @JoinTable(name = "singer_song", joinColumns = @JoinColumn(name = "song_id"),
-            inverseJoinColumns = @JoinColumn(name = "singer_id"))
+    (mappedBy = "songList")
+    @JsonIgnore
     public List<Singer> singerList;
 
     @Transient

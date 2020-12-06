@@ -120,7 +120,7 @@ public class SongController {
         int index = 1;
         List<Song> listNewSong = new ArrayList<>();
         for (int i = list.size(); i > 0; i--) {
-            if (index < 10) {
+            if (index < 9) {
                 listNewSong.add(list.get(i - 1));
                 index++;
             }
@@ -133,4 +133,7 @@ public class SongController {
         if(optionalStudent.isPresent()) return new ResponseEntity<>(optionalStudent.get(),HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+
+
 }
